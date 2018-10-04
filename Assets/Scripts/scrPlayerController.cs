@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class scrPlayerController : MonoBehaviour {
 
     public float speed;
     public float jumpPower;
+    public Text scoreText;
+    public Text winText;
 
     private Rigidbody rb;
+    private int pickUpCount;
+
 
     void Start() {
         rb = GetComponent<Rigidbody>();
+        pickUpCount = 0;
+        SetCountText();
+        winText.text = "";
     }
 
     void FixedUpdate() {
@@ -30,6 +38,15 @@ public class scrPlayerController : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Pick Up")) { //makesure its the right object
             other.gameObject.SetActive(false); //
+            pickUpCount++; //increment score
+            SetCountText();
+        }
+    }
+
+    void SetCountText() {
+        scoreText.text = "Scrolls: " + pickUpCount.ToString();
+        if(pickUpCount >= 11) {
+            winText.text = "YOU FOUND DE WEY";
         }
     }
 }
