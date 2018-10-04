@@ -29,7 +29,7 @@ public class scrPlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Pick Up")) { //makesure its the right object
-            other.gameObject.SetActive(false); 
+            other.gameObject.SetActive(false); //
         }
     }
 }
